@@ -226,8 +226,31 @@ app.get("*", (_req, res) => {
 });
 
 // ─── Start ────────────────────────────────────────────────────────────────────
+async function initDB() {
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS signups (
+      id         SERIAL PRIMARY KEY,
+      name       VARCHAR(100)  NOT NULL,
+      phone      VARCHAR(30)   NOT NULL UNIQUE,
+      email      VARCHAR(254),
+      source     VARCHAR(100)  DEFAULT 'landing',
+      created_at TIMESTAMPTZ   DEFAULT NOW()
+    )
+  `);
+  console.log("[DB] Table ready ✓");
+}
+
 const PORT = Number(process.env.PORT) || 3000;
-app.listen(PORT, () => {
-  console.log(`[CornRoad] Server running → http://localhost:${PORT}`);
-  console.log(`[CornRoad] Admin panel   → http://localhost:${PORT}/admin.html`);
-});
+initDB()
+  .then(() =>
+    app.listen(PORT, () => {
+      console.log(`[CornRoad] Server running → http://localhost:${PORT}`);
+      console.log(
+        `[CornRoad] Admin panel   → http://localhost:${PORT}/admin.html`,
+      );
+    }),
+  )
+  .catch((err) => {
+    console.error("[FATAL] DB init failed:", err.message);
+    process.exit(1);
+  });
