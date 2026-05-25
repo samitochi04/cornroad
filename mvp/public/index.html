@@ -1,0 +1,1652 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CornRoad — Learn Braiding &amp; Afro Styling</title>
+    <meta
+      name="description"
+      content="CornRoad is the afro-educational platform where African and Afro-descendant people learn braiding, styling and hair culture — from first cornrow to professional mastery."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #0d0d0b;
+        --ink-soft: #3d3d38;
+        --ink-muted: #7a7a72;
+        --paper: #f2eee8;
+        --paper-warm: #e8e2d6;
+        --paper-white: #fdfaf6;
+        --accent: #c4622d;
+        --accent-soft: #f5e8de;
+        --accent2: #2e6b3e;
+        --accent2-soft: #deeddf;
+        --accent3: #7d4e2d;
+        --accent3-soft: #ede0d5;
+        --warn: #b8860b;
+        --warn-soft: #fdf4dc;
+        --border: rgba(13, 13, 11, 0.12);
+        --border-strong: rgba(13, 13, 11, 0.22);
+        --serif: "DM Serif Display", Georgia, serif;
+        --sans: "DM Sans", system-ui, sans-serif;
+        --mono: "JetBrains Mono", monospace;
+        --max: 1060px;
+        --r: 10px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--sans);
+        background: var(--paper);
+        color: var(--ink);
+        font-size: 16px;
+        line-height: 1.75;
+        overflow-x: hidden;
+      }
+
+      #progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 2px;
+        width: 0%;
+        background: var(--accent);
+        z-index: 1000;
+        transition: width 0.1s linear;
+      }
+
+      /* ── NAV ───────────────────────────────────────── */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        background: rgba(242, 238, 232, 0.94);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border-strong);
+      }
+      .nav-inner {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 40px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+      }
+      .logo-img {
+        height: 40px;
+        width: auto;
+        display: block;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .lang-btn {
+        font-family: var(--mono);
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+        background: transparent;
+        border: 1px solid var(--border-strong);
+        border-radius: 4px;
+        padding: 6px 14px;
+        cursor: pointer;
+        transition:
+          color 0.15s,
+          border-color 0.15s;
+      }
+      .lang-btn:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+
+      .nav-cta {
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--paper);
+        background: var(--ink);
+        padding: 9px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background 0.2s;
+        white-space: nowrap;
+      }
+      .nav-cta:hover {
+        background: var(--accent);
+      }
+
+      /* ── LAYOUT ────────────────────────────────────── */
+      .container {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+      section {
+        scroll-margin-top: 72px;
+      }
+
+      /* ── HERO ──────────────────────────────────────── */
+      #hero {
+        padding: 90px 40px 80px;
+        max-width: var(--max);
+        margin: 0 auto;
+        border-bottom: 1px solid var(--border-strong);
+      }
+      .hero-kicker {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .kicker-dot {
+        width: 6px;
+        height: 6px;
+        background: var(--accent2);
+        border-radius: 50%;
+        animation: blink 2s infinite;
+        flex-shrink: 0;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.25;
+        }
+      }
+
+      #hero h1 {
+        font-family: var(--serif);
+        font-size: clamp(38px, 5.5vw, 68px);
+        line-height: 1.06;
+        color: var(--ink);
+        margin-bottom: 24px;
+        max-width: 780px;
+      }
+      #hero h1 em {
+        font-style: italic;
+        color: var(--accent);
+      }
+
+      .hero-sub {
+        font-size: 17px;
+        color: var(--ink-soft);
+        max-width: 560px;
+        line-height: 1.75;
+        margin-bottom: 40px;
+      }
+
+      /* ── FORM ──────────────────────────────────────── */
+      .capture-form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        max-width: 480px;
+      }
+      .form-row {
+        display: flex;
+        gap: 8px;
+      }
+      .capture-form input {
+        flex: 1;
+        background: var(--paper-white);
+        border: 1px solid var(--border-strong);
+        border-radius: 4px;
+        padding: 12px 18px;
+        font-family: var(--sans);
+        font-size: 15px;
+        color: var(--ink);
+        outline: none;
+        transition: border-color 0.15s;
+      }
+      .capture-form input::placeholder {
+        color: var(--ink-muted);
+      }
+      .capture-form input:focus {
+        border-color: var(--accent);
+      }
+      .btn-primary {
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--paper);
+        background: var(--ink);
+        border: none;
+        border-radius: 4px;
+        padding: 12px 22px;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: background 0.2s;
+      }
+      .btn-primary:hover {
+        background: var(--accent);
+      }
+      .btn-primary:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        background: var(--ink);
+      }
+      .form-note {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.04em;
+        color: var(--ink-muted);
+      }
+      .form-message {
+        font-size: 13px;
+        padding: 10px 16px;
+        border-radius: 4px;
+        display: none;
+        border-left: 3px solid;
+      }
+      .form-message.success {
+        background: var(--accent2-soft);
+        border-color: var(--accent2);
+        color: var(--accent2);
+        display: block;
+      }
+      .form-message.error {
+        background: var(--accent-soft);
+        border-color: var(--accent);
+        color: var(--accent);
+        display: block;
+      }
+
+      /* ── HERO META ─────────────────────────────────── */
+      .hero-meta {
+        display: flex;
+        gap: 40px;
+        flex-wrap: wrap;
+        margin-top: 48px;
+        padding-top: 32px;
+        border-top: 1px solid var(--border);
+      }
+      .meta-val {
+        font-family: var(--serif);
+        font-size: 30px;
+        color: var(--ink);
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+      .meta-val em {
+        color: var(--accent);
+        font-style: normal;
+      }
+      .meta-lbl {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+      }
+
+      /* ── SECTION HEADERS ───────────────────────────── */
+      .section-kicker {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+        margin-bottom: 14px;
+      }
+      .section-title {
+        font-family: var(--serif);
+        font-size: clamp(26px, 3.5vw, 42px);
+        line-height: 1.12;
+        color: var(--ink);
+        margin-bottom: 16px;
+      }
+      .section-title em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .section-sub {
+        font-size: 16px;
+        color: var(--ink-soft);
+        max-width: 560px;
+        line-height: 1.75;
+      }
+
+      /* ── PROBLEM ───────────────────────────────────── */
+      #problem {
+        padding: 88px 0;
+        background: var(--paper-warm);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .problems-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1px;
+        margin-top: 48px;
+        background: var(--border-strong);
+        border: 1px solid var(--border-strong);
+        border-radius: var(--r);
+        overflow: hidden;
+      }
+      .problem-card {
+        background: var(--paper-warm);
+        padding: 28px;
+        transition: background 0.15s;
+      }
+      .problem-card:hover {
+        background: var(--paper-white);
+      }
+      .problem-icon {
+        font-size: 22px;
+        margin-bottom: 14px;
+      }
+      .problem-card h3 {
+        font-family: var(--serif);
+        font-size: 18px;
+        color: var(--ink);
+        margin-bottom: 10px;
+        line-height: 1.2;
+      }
+      .problem-card p {
+        font-size: 14px;
+        color: var(--ink-soft);
+        line-height: 1.75;
+      }
+
+      /* ── SOLUTION ──────────────────────────────────── */
+      #solution {
+        padding: 88px 0;
+      }
+      .solution-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 72px;
+        align-items: center;
+        margin-top: 48px;
+      }
+      .solution-text p {
+        font-size: 15px;
+        color: var(--ink-soft);
+        line-height: 1.8;
+        margin-bottom: 14px;
+      }
+      .solution-checklist {
+        list-style: none;
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .solution-checklist li {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        font-size: 14px;
+        color: var(--ink-soft);
+        line-height: 1.65;
+      }
+      .check-mark {
+        flex-shrink: 0;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--accent2);
+        margin-top: 2px;
+        font-weight: 500;
+      }
+
+      /* ── COURSE MOCK ───────────────────────────────── */
+      .course-mock {
+        background: var(--paper-white);
+        border: 1px solid var(--border-strong);
+        border-radius: var(--r);
+        overflow: hidden;
+        box-shadow:
+          0 8px 40px rgba(13, 13, 11, 0.1),
+          0 2px 8px rgba(13, 13, 11, 0.06);
+      }
+      .mock-topbar {
+        background: var(--paper-warm);
+        padding: 12px 18px;
+        border-bottom: 1px solid var(--border-strong);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .mock-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+      }
+      .mock-topbar-label {
+        margin-left: 10px;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        color: var(--ink-muted);
+      }
+      .mock-body {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .mock-course {
+        background: var(--paper);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 12px 14px;
+      }
+      .mock-course-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 8px;
+      }
+      .mock-course-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .mock-course-icon {
+        font-size: 14px;
+      }
+      .mock-course-name {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--ink);
+      }
+      .mock-pct {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--ink-muted);
+      }
+      .mock-progress-bar {
+        height: 4px;
+        background: var(--border-strong);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .mock-progress-fill {
+        height: 100%;
+        border-radius: 2px;
+        background: var(--accent);
+      }
+      .mock-progress-fill.green {
+        background: var(--accent2);
+      }
+      .mock-badge {
+        font-family: var(--mono);
+        font-size: 9px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 3px 8px;
+        border-radius: 3px;
+        white-space: nowrap;
+      }
+      .mock-badge.done {
+        background: var(--accent2-soft);
+        color: var(--accent2);
+      }
+      .mock-badge.locked {
+        background: var(--paper-warm);
+        color: var(--ink-muted);
+      }
+
+      /* ── TRACKS ────────────────────────────────────── */
+      #tracks {
+        padding: 88px 0;
+        background: var(--paper-warm);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .modules-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 16px;
+        margin-top: 48px;
+      }
+      .module-card {
+        background: var(--paper-white);
+        border: 1px solid var(--border-strong);
+        border-radius: var(--r);
+        padding: 28px;
+        border-top: 3px solid var(--border-strong);
+        transition:
+          border-top-color 0.2s,
+          box-shadow 0.2s;
+      }
+      .module-card:hover {
+        box-shadow: 0 4px 24px rgba(13, 13, 11, 0.08);
+      }
+      .module-card[data-accent="terra"]:hover {
+        border-top-color: var(--accent);
+      }
+      .module-card[data-accent="green"]:hover {
+        border-top-color: var(--accent2);
+      }
+      .module-card[data-accent="mahog"]:hover {
+        border-top-color: var(--accent3);
+      }
+      .module-card[data-accent="warn"]:hover {
+        border-top-color: var(--warn);
+      }
+      .module-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+      .module-icon {
+        font-size: 22px;
+      }
+      .module-tag {
+        font-family: var(--mono);
+        font-size: 9px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 3px 8px;
+        border-radius: 3px;
+        white-space: nowrap;
+      }
+      .tag-green {
+        background: var(--accent2-soft);
+        color: var(--accent2);
+      }
+      .tag-terra {
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+      .tag-mahog {
+        background: var(--accent3-soft);
+        color: var(--accent3);
+      }
+      .tag-warn {
+        background: var(--warn-soft);
+        color: var(--warn);
+      }
+      .module-card h3 {
+        font-family: var(--serif);
+        font-size: 18px;
+        color: var(--ink);
+        margin-bottom: 10px;
+        line-height: 1.2;
+      }
+      .module-card p {
+        font-size: 13px;
+        color: var(--ink-soft);
+        line-height: 1.8;
+      }
+
+      /* ── COMMUNITY ─────────────────────────────────── */
+      #community {
+        padding: 88px 0;
+      }
+      .community-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 16px;
+        margin-top: 48px;
+      }
+      .community-card {
+        background: var(--paper-white);
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent2);
+        border-radius: 0 var(--r) var(--r) 0;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .community-stat {
+        font-family: var(--serif);
+        font-size: 28px;
+        color: var(--accent);
+        line-height: 1;
+      }
+      .community-card h3 {
+        font-family: var(--serif);
+        font-size: 16px;
+        color: var(--ink);
+        line-height: 1.25;
+      }
+      .community-card p {
+        font-size: 13px;
+        color: var(--ink-soft);
+        line-height: 1.75;
+      }
+
+      /* ── CTA ───────────────────────────────────────── */
+      #cta {
+        padding: 100px 0;
+        background: var(--paper-warm);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .cta-inner {
+        max-width: 620px;
+      }
+      .cta-inner h2 {
+        font-family: var(--serif);
+        font-size: clamp(28px, 3.5vw, 46px);
+        line-height: 1.1;
+        color: var(--ink);
+        margin-bottom: 16px;
+      }
+      .cta-inner h2 em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .cta-inner > p {
+        font-size: 16px;
+        color: var(--ink-soft);
+        line-height: 1.75;
+        margin-bottom: 36px;
+      }
+
+      /* ── FOOTER ────────────────────────────────────── */
+      footer {
+        border-top: 1px solid var(--border-strong);
+        padding: 36px 40px;
+        background: var(--paper);
+      }
+      .footer-inner {
+        max-width: var(--max);
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .footer-logo-img {
+        height: 30px;
+        width: auto;
+      }
+      .footer-copy {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.06em;
+        color: var(--ink-muted);
+      }
+      .footer-links {
+        display: flex;
+        gap: 24px;
+      }
+      .footer-links a {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.06em;
+        color: var(--ink-muted);
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: color 0.15s;
+      }
+      .footer-links a:hover {
+        color: var(--accent);
+      }
+
+      /* ── FADE UP ───────────────────────────────────── */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.55s ease,
+          transform 0.55s ease;
+      }
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── RESPONSIVE ────────────────────────────────── */
+      @media (max-width: 768px) {
+        #hero,
+        .container,
+        footer {
+          padding-left: 24px;
+          padding-right: 24px;
+        }
+        .nav-inner {
+          padding: 0 24px;
+        }
+        #hero {
+          padding-top: 72px;
+          padding-bottom: 60px;
+        }
+        #problem,
+        #solution,
+        #tracks,
+        #community,
+        #cta {
+          padding: 64px 0;
+        }
+        .solution-layout {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .course-mock {
+          display: none;
+        }
+        .form-row {
+          flex-direction: column;
+        }
+        .btn-primary {
+          width: 100%;
+          text-align: center;
+        }
+        .hero-meta {
+          gap: 28px;
+        }
+        .footer-inner {
+          flex-direction: column;
+          gap: 16px;
+        }
+        .nav-cta {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="progress-bar"></div>
+
+    <!-- NAV -->
+    <nav>
+      <div class="nav-inner">
+        <a href="#hero" class="logo">
+          <img src="logo.png" alt="CornRoad" class="logo-img" />
+        </a>
+        <div class="nav-right">
+          <button class="lang-btn" id="lang-toggle" onclick="toggleLang()">
+            FR
+          </button>
+          <a href="#cta" class="nav-cta" data-i18n="nav.cta"
+            >Early Access &rarr;</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-kicker">
+        <span class="kicker-dot"></span>
+        <span data-i18n="hero.kicker"
+          >Beta Access &middot; Waitlist Now Open</span
+        >
+      </div>
+
+      <h1 data-i18n-html="hero.h1">
+        Learn braiding. Honor your <em>roots.</em>
+      </h1>
+
+      <p class="hero-sub" data-i18n="hero.sub">
+        CornRoad is the afro-educational platform where African and
+        Afro-descendant people learn braiding and styling &mdash; from first
+        cornrow to professional mastery.
+      </p>
+
+      <form class="capture-form" id="hero-form">
+        <input
+          type="text"
+          name="name"
+          required
+          data-i18n-ph="form.name"
+          placeholder="Your full name *"
+          autocomplete="name"
+        />
+        <input
+          type="tel"
+          name="phone"
+          required
+          data-i18n-ph="form.phone"
+          placeholder="Your phone number *"
+          autocomplete="tel"
+        />
+        <div class="form-row">
+          <input
+            type="email"
+            name="email"
+            data-i18n-ph="form.email"
+            placeholder="Email (optional)"
+            autocomplete="email"
+          />
+          <button type="submit" class="btn-primary" data-i18n="form.btn">
+            Join the waitlist
+          </button>
+        </div>
+        <p class="form-note" data-i18n="form.note">
+          Free &middot; No spam &middot; Unsubscribe anytime
+        </p>
+        <div class="form-message" id="hero-msg"></div>
+      </form>
+
+      <div class="hero-meta fade-up">
+        <div class="meta-item">
+          <div class="meta-val"><em>50+</em></div>
+          <div class="meta-lbl" data-i18n="meta.techniques">
+            Braiding techniques
+          </div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-val"><em>100%</em></div>
+          <div class="meta-lbl" data-i18n="meta.rooted">
+            African-rooted content
+          </div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-val"><em>2025</em></div>
+          <div class="meta-lbl" data-i18n="meta.beta">Beta launch</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-val"><em data-i18n="meta.freeVal">Free</em></div>
+          <div class="meta-lbl" data-i18n="meta.free">To join the waitlist</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section id="problem">
+      <div class="container">
+        <div class="fade-up">
+          <p class="section-kicker" data-i18n="prob.kicker">The challenge</p>
+          <h2 class="section-title" data-i18n-html="prob.title">
+            Ancestral knowledge,<br /><em>hard to find.</em>
+          </h2>
+          <p class="section-sub" data-i18n="prob.sub">
+            Braiding is a living tradition &mdash; but for the diaspora,
+            accessing authentic, structured learning has always been a
+            challenge.
+          </p>
+        </div>
+        <div class="problems-grid">
+          <div class="problem-card fade-up">
+            <div class="problem-icon">&#x1F5E3;&#xFE0F;</div>
+            <h3 data-i18n="prob.c1.title">Knowledge passed down verbally</h3>
+            <p data-i18n="prob.c1.text">
+              Traditional braiding techniques have been passed from hand to hand
+              for generations, with no written curriculum or structured learning
+              path.
+            </p>
+          </div>
+          <div class="problem-card fade-up">
+            <div class="problem-icon">&#x1F4F1;</div>
+            <h3 data-i18n="prob.c2.title">Scattered online content</h3>
+            <p data-i18n="prob.c2.text">
+              Hours of YouTube videos, no progression, no context, no heritage.
+              Content rarely comes from community insiders with genuine
+              expertise.
+            </p>
+          </div>
+          <div class="problem-card fade-up">
+            <div class="problem-icon">&#x1F393;</div>
+            <h3 data-i18n="prob.c3.title">No formal career pathway</h3>
+            <p data-i18n="prob.c3.text">
+              Braiding is a craft and a career, but few structured pathways
+              exist for those who want to turn their passion into a sustainable
+              profession.
+            </p>
+          </div>
+          <div class="problem-card fade-up">
+            <div class="problem-icon">&#x1F30D;</div>
+            <h3 data-i18n="prob.c4.title">Diaspora disconnected from roots</h3>
+            <p data-i18n="prob.c4.text">
+              Many Afro-descendants born abroad grew up without access to the
+              elders who held this knowledge. CornRoad bridges that gap,
+              wherever you are.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUTION -->
+    <section id="solution">
+      <div class="container">
+        <div class="solution-layout">
+          <div class="solution-text fade-up">
+            <p class="section-kicker" data-i18n="sol.kicker">The solution</p>
+            <h2 class="section-title" data-i18n-html="sol.title">
+              Your braiding journey,<br /><em>finally structured.</em>
+            </h2>
+            <p data-i18n="sol.p1">
+              CornRoad gives you a structured, step-by-step path from complete
+              beginner to confident braider &mdash; rooted in African hair
+              traditions and guided by expert instructors who look like you.
+            </p>
+            <p data-i18n="sol.p2">
+              Learn at your own pace, track your progress, and connect with a
+              global community of learners and professional braiders.
+            </p>
+            <ul class="solution-checklist">
+              <li>
+                <span class="check-mark">&#x2713;</span
+                ><span data-i18n="sol.check1"
+                  >Step-by-step video tutorials by expert braiders</span
+                >
+              </li>
+              <li>
+                <span class="check-mark">&#x2713;</span
+                ><span data-i18n="sol.check2"
+                  >Progressive curriculum from complete beginner to pro</span
+                >
+              </li>
+              <li>
+                <span class="check-mark">&#x2713;</span
+                ><span data-i18n="sol.check3"
+                  >Rooted in African hair traditions and cultural history</span
+                >
+              </li>
+              <li>
+                <span class="check-mark">&#x2713;</span
+                ><span data-i18n="sol.check4"
+                  >Community of learners, instructors and mentors</span
+                >
+              </li>
+              <li>
+                <span class="check-mark">&#x2713;</span
+                ><span data-i18n="sol.check5"
+                  >Track your progress and earn sharable certificates</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="course-mock fade-up">
+            <div class="mock-topbar">
+              <div class="mock-dot" style="background: #ef4444"></div>
+              <div
+                class="mock-dot"
+                style="background: #f59e0b; margin-left: 3px"
+              ></div>
+              <div
+                class="mock-dot"
+                style="background: #22c55e; margin-left: 3px"
+              ></div>
+              <span class="mock-topbar-label" data-i18n="mock.title"
+                >CornRoad &mdash; My Progress</span
+              >
+            </div>
+            <div class="mock-body">
+              <div class="mock-course">
+                <div class="mock-course-header">
+                  <div class="mock-course-left">
+                    <div class="mock-course-icon">&#x1FAA2;</div>
+                    <div class="mock-course-name" data-i18n="mock.c1">
+                      Foundations &amp; Cornrows
+                    </div>
+                  </div>
+                  <div class="mock-badge done" data-i18n="mock.done">Done</div>
+                </div>
+                <div class="mock-progress-bar">
+                  <div
+                    class="mock-progress-fill green"
+                    style="width: 100%"
+                  ></div>
+                </div>
+              </div>
+              <div class="mock-course">
+                <div class="mock-course-header">
+                  <div class="mock-course-left">
+                    <div class="mock-course-icon">&#x2728;</div>
+                    <div class="mock-course-name" data-i18n="mock.c2">
+                      Box Braids Mastery
+                    </div>
+                  </div>
+                  <div class="mock-pct">68%</div>
+                </div>
+                <div class="mock-progress-bar">
+                  <div class="mock-progress-fill" style="width: 68%"></div>
+                </div>
+              </div>
+              <div class="mock-course">
+                <div class="mock-course-header">
+                  <div class="mock-course-left">
+                    <div class="mock-course-icon">&#x1F33F;</div>
+                    <div class="mock-course-name" data-i18n="mock.c3">
+                      Senegalese Twists
+                    </div>
+                  </div>
+                  <div class="mock-pct">20%</div>
+                </div>
+                <div class="mock-progress-bar">
+                  <div
+                    class="mock-progress-fill"
+                    style="width: 20%; background: var(--accent3)"
+                  ></div>
+                </div>
+              </div>
+              <div class="mock-course">
+                <div class="mock-course-header">
+                  <div class="mock-course-left">
+                    <div class="mock-course-icon">&#x1F512;</div>
+                    <div class="mock-course-name" data-i18n="mock.c4">
+                      Loc Journey
+                    </div>
+                  </div>
+                  <div class="mock-badge locked" data-i18n="mock.locked">
+                    Locked
+                  </div>
+                </div>
+                <div class="mock-progress-bar">
+                  <div class="mock-progress-fill" style="width: 0%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRACKS -->
+    <section id="tracks">
+      <div class="container">
+        <div class="fade-up">
+          <p class="section-kicker" data-i18n="tracks.kicker">
+            What's included
+          </p>
+          <h2 class="section-title" data-i18n-html="tracks.title">
+            6 tracks for every level<br /><em>of your journey.</em>
+          </h2>
+          <p class="section-sub" data-i18n="tracks.sub">
+            Each track is designed to meet you where you are and take you
+            further than you expected.
+          </p>
+        </div>
+        <div class="modules-grid">
+          <div class="module-card fade-up" data-accent="green">
+            <div class="module-header">
+              <div class="module-icon">&#x1FAA2;</div>
+              <span class="module-tag tag-green" data-i18n="tracks.t1.tag"
+                >Start Here &middot; Free</span
+              >
+            </div>
+            <h3 data-i18n="tracks.t1.title">Foundations</h3>
+            <p data-i18n="tracks.t1.text">
+              Learn hair types, essential tools, and core techniques &mdash;
+              basic cornrows, parts, and tension control. The right foundation
+              for every beginner.
+            </p>
+          </div>
+          <div class="module-card fade-up" data-accent="terra">
+            <div class="module-header">
+              <div class="module-icon">&#x2728;</div>
+              <span class="module-tag tag-terra" data-i18n="tracks.t2.tag"
+                >Most Popular</span
+              >
+            </div>
+            <h3 data-i18n="tracks.t2.title">Braid Mastery</h3>
+            <p data-i18n="tracks.t2.text">
+              Box braids, knotless braids, goddess braids, jumbo styles &mdash;
+              advanced techniques, patterns and finishes that turn heads.
+            </p>
+          </div>
+          <div class="module-card fade-up" data-accent="mahog">
+            <div class="module-header">
+              <div class="module-icon">&#x1F33F;</div>
+              <span class="module-tag tag-mahog" data-i18n="tracks.t3.tag"
+                >Commitment Path</span
+              >
+            </div>
+            <h3 data-i18n="tracks.t3.title">Loc Journey</h3>
+            <p data-i18n="tracks.t3.text">
+              From traditional locs to sisterlocs &mdash; the full lifecycle,
+              maintenance, retwist techniques, and styling a mature set.
+            </p>
+          </div>
+          <div class="module-card fade-up" data-accent="terra">
+            <div class="module-header">
+              <div class="module-icon">&#x1F4AB;</div>
+              <span class="module-tag tag-terra" data-i18n="tracks.t4.tag"
+                >Protective Styles</span
+              >
+            </div>
+            <h3 data-i18n="tracks.t4.title">Natural Styling</h3>
+            <p data-i18n="tracks.t4.text">
+              Bantu knots, perm rods, afro shaping, Senegalese twists &mdash;
+              styles that celebrate your natural texture and protect your
+              growth.
+            </p>
+          </div>
+          <div class="module-card fade-up" data-accent="warn">
+            <div class="module-header">
+              <div class="module-icon">&#x1F4D6;</div>
+              <span class="module-tag tag-warn" data-i18n="tracks.t5.tag"
+                >Cultural Roots</span
+              >
+            </div>
+            <h3 data-i18n="tracks.t5.title">Heritage &amp; Culture</h3>
+            <p data-i18n="tracks.t5.text">
+              The story behind the braid. African tribal patterns, diaspora
+              adaptations, the social and spiritual meaning woven into each
+              style.
+            </p>
+          </div>
+          <div class="module-card fade-up" data-accent="green">
+            <div class="module-header">
+              <div class="module-icon">&#x1F4BC;</div>
+              <span class="module-tag tag-green" data-i18n="tracks.t6.tag"
+                >Pro Track &middot; Career</span
+              >
+            </div>
+            <h3 data-i18n="tracks.t6.title">Professional Path</h3>
+            <p data-i18n="tracks.t6.text">
+              Build your clientele, set up your salon space, price your
+              services, create a portfolio and grow a sustainable braiding
+              business.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMUNITY -->
+    <section id="community">
+      <div class="container">
+        <div class="fade-up">
+          <p class="section-kicker" data-i18n="comm.kicker">Why now</p>
+          <h2 class="section-title" data-i18n-html="comm.title">
+            The braiding renaissance<br /><em>is here.</em>
+          </h2>
+          <p class="section-sub" data-i18n="comm.sub">
+            The world is waking up to the beauty, power and depth of Afro hair
+            culture. CornRoad exists to ensure communities own this moment.
+          </p>
+        </div>
+        <div class="community-grid">
+          <div class="community-card fade-up">
+            <div class="community-stat">$6.3B</div>
+            <h3 data-i18n="comm.c1.title">Natural hair care market</h3>
+            <p data-i18n="comm.c1.text">
+              The US natural hair market is growing rapidly, driven by
+              Afro-descendant communities reclaiming identity and investing in
+              authentic products and education.
+            </p>
+          </div>
+          <div class="community-card fade-up">
+            <div class="community-stat">3&times;</div>
+            <h3 data-i18n="comm.c2.title">Search growth in 5 years</h3>
+            <p data-i18n="comm.c2.text">
+              Searches for braiding tutorials have tripled since 2019, yet
+              authentic, culturally-rooted, structured content remains scarce
+              online.
+            </p>
+          </div>
+          <div class="community-card fade-up">
+            <div class="community-stat">40M+</div>
+            <h3 data-i18n="comm.c3.title">Afro-descendants in Europe</h3>
+            <p data-i18n="comm.c3.text">
+              Millions of Afro-Europeans and Afro-Canadians are looking for
+              cultural reconnection. CornRoad is built for this community,
+              wherever they are.
+            </p>
+          </div>
+          <div class="community-card fade-up">
+            <div class="community-stat">&#x1FAA2;</div>
+            <h3 data-i18n="comm.c4.title">Be a founding member</h3>
+            <p data-i18n="comm.c4.text">
+              Early members shape the platform &mdash; founding prices, beta
+              feature access, and a direct voice in deciding what CornRoad
+              becomes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="cta">
+      <div class="container">
+        <div class="cta-inner fade-up">
+          <p class="section-kicker" data-i18n="cta.kicker">
+            Early Access &mdash; Limited Spots
+          </p>
+          <h2 data-i18n-html="cta.title">
+            Ready to learn braiding<br /><em>the right way?</em>
+          </h2>
+          <p data-i18n="cta.sub">
+            Join the waitlist and be among the first to access CornRoad when we
+            launch. Founding members get exclusive early pricing.
+          </p>
+          <form class="capture-form" id="cta-form">
+            <input
+              type="text"
+              name="name"
+              required
+              data-i18n-ph="form.name"
+              placeholder="Your full name *"
+              autocomplete="name"
+            />
+            <input
+              type="tel"
+              name="phone"
+              required
+              data-i18n-ph="form.phone"
+              placeholder="Your phone number *"
+              autocomplete="tel"
+            />
+            <div class="form-row">
+              <input
+                type="email"
+                name="email"
+                data-i18n-ph="form.email"
+                placeholder="Email (optional)"
+                autocomplete="email"
+              />
+              <button type="submit" class="btn-primary" data-i18n="cta.btn">
+                I want early access &rarr;
+              </button>
+            </div>
+            <p class="form-note" data-i18n="form.note">
+              Free &middot; No spam &middot; Unsubscribe anytime
+            </p>
+            <div class="form-message" id="cta-msg"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <img src="logo.png" alt="CornRoad" class="footer-logo-img" />
+        <span class="footer-copy" data-i18n="footer.copy"
+          >&copy; 2025 CornRoad &mdash; Afro-Educational Platform</span
+        >
+        <div class="footer-links">
+          <a href="#" data-i18n="footer.privacy">Privacy</a>
+          <a href="#" data-i18n="footer.contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // ── Progress bar ───────────────────────────────────────────────────────────
+      const bar = document.getElementById("progress-bar");
+      document.addEventListener("scroll", () => {
+        const total =
+          document.documentElement.scrollHeight - window.innerHeight;
+        if (total > 0) bar.style.width = (window.scrollY / total) * 100 + "%";
+      });
+
+      // ── Fade-up on scroll ──────────────────────────────────────────────────────
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.08 },
+      );
+      document
+        .querySelectorAll(".fade-up")
+        .forEach((el) => observer.observe(el));
+
+      // ── i18n ───────────────────────────────────────────────────────────────────
+      const T = {
+        en: {
+          "nav.cta": "Early Access \u2192",
+          "hero.kicker": "Beta Access \u00b7 Waitlist Now Open",
+          "hero.h1": "Learn braiding. Honor your <em>roots.</em>",
+          "hero.sub":
+            "CornRoad is the afro-educational platform where African and Afro-descendant people learn braiding and styling \u2014 from first cornrow to professional mastery.",
+          "form.name": "Your full name *",
+          "form.phone": "Your phone number *",
+          "form.email": "Email (optional)",
+          "form.btn": "Join the waitlist",
+          "form.note": "Free \u00b7 No spam \u00b7 Unsubscribe anytime",
+          "form.sending": "Sending\u2026",
+          "form.success":
+            "You\u2019re on the list! We\u2019ll reach out when we launch.",
+          "form.error": "Something went wrong. Please try again.",
+          "form.required": "Name and phone number are required.",
+          "meta.techniques": "Braiding techniques",
+          "meta.rooted": "African-rooted content",
+          "meta.beta": "Beta launch",
+          "meta.freeVal": "Free",
+          "meta.free": "To join the waitlist",
+          "prob.kicker": "The challenge",
+          "prob.title": "Ancestral knowledge,<br /><em>hard to find.</em>",
+          "prob.sub":
+            "Braiding is a living tradition \u2014 but for the diaspora, accessing authentic, structured learning has always been a challenge.",
+          "prob.c1.title": "Knowledge passed down verbally",
+          "prob.c1.text":
+            "Traditional braiding techniques have been passed from hand to hand for generations, with no written curriculum or structured learning path.",
+          "prob.c2.title": "Scattered online content",
+          "prob.c2.text":
+            "Hours of YouTube videos, no progression, no context, no heritage. Content rarely comes from community insiders with genuine expertise.",
+          "prob.c3.title": "No formal career pathway",
+          "prob.c3.text":
+            "Braiding is a craft and a career, but few structured pathways exist for those who want to turn their passion into a sustainable profession.",
+          "prob.c4.title": "Diaspora disconnected from roots",
+          "prob.c4.text":
+            "Many Afro-descendants born abroad grew up without access to the elders who held this knowledge. CornRoad bridges that gap, wherever you are.",
+          "sol.kicker": "The solution",
+          "sol.title":
+            "Your braiding journey,<br /><em>finally structured.</em>",
+          "sol.p1":
+            "CornRoad gives you a structured, step-by-step path from complete beginner to confident braider \u2014 rooted in African hair traditions and guided by expert instructors who look like you.",
+          "sol.p2":
+            "Learn at your own pace, track your progress, and connect with a global community of learners and professional braiders.",
+          "sol.check1": "Step-by-step video tutorials by expert braiders",
+          "sol.check2": "Progressive curriculum from complete beginner to pro",
+          "sol.check3":
+            "Rooted in African hair traditions and cultural history",
+          "sol.check4": "Community of learners, instructors and mentors",
+          "sol.check5": "Track your progress and earn sharable certificates",
+          "mock.title": "CornRoad \u2014 My Progress",
+          "mock.c1": "Foundations & Cornrows",
+          "mock.c2": "Box Braids Mastery",
+          "mock.c3": "Senegalese Twists",
+          "mock.c4": "Loc Journey",
+          "mock.done": "Done",
+          "mock.locked": "Locked",
+          "tracks.kicker": "What\u2019s included",
+          "tracks.title":
+            "6 tracks for every level<br /><em>of your journey.</em>",
+          "tracks.sub":
+            "Each track is designed to meet you where you are and take you further than you expected.",
+          "tracks.t1.tag": "Start Here \u00b7 Free",
+          "tracks.t1.title": "Foundations",
+          "tracks.t1.text":
+            "Learn hair types, essential tools, and core techniques \u2014 basic cornrows, parts, and tension control. The right foundation for every beginner.",
+          "tracks.t2.tag": "Most Popular",
+          "tracks.t2.title": "Braid Mastery",
+          "tracks.t2.text":
+            "Box braids, knotless braids, goddess braids, jumbo styles \u2014 advanced techniques, patterns and finishes that turn heads.",
+          "tracks.t3.tag": "Commitment Path",
+          "tracks.t3.title": "Loc Journey",
+          "tracks.t3.text":
+            "From traditional locs to sisterlocs \u2014 the full lifecycle, maintenance, retwist techniques, and styling a mature set.",
+          "tracks.t4.tag": "Protective Styles",
+          "tracks.t4.title": "Natural Styling",
+          "tracks.t4.text":
+            "Bantu knots, perm rods, afro shaping, Senegalese twists \u2014 styles that celebrate your natural texture and protect your growth.",
+          "tracks.t5.tag": "Cultural Roots",
+          "tracks.t5.title": "Heritage & Culture",
+          "tracks.t5.text":
+            "The story behind the braid. African tribal patterns, diaspora adaptations, the social and spiritual meaning woven into each style.",
+          "tracks.t6.tag": "Pro Track \u00b7 Career",
+          "tracks.t6.title": "Professional Path",
+          "tracks.t6.text":
+            "Build your clientele, set up your salon space, price your services, create a portfolio and grow a sustainable braiding business.",
+          "comm.kicker": "Why now",
+          "comm.title": "The braiding renaissance<br /><em>is here.</em>",
+          "comm.sub":
+            "The world is waking up to the beauty, power and depth of Afro hair culture. CornRoad exists to ensure communities own this moment.",
+          "comm.c1.title": "Natural hair care market",
+          "comm.c1.text":
+            "The US natural hair market is growing rapidly, driven by Afro-descendant communities reclaiming identity and investing in authentic products and education.",
+          "comm.c2.title": "Search growth in 5 years",
+          "comm.c2.text":
+            "Searches for braiding tutorials have tripled since 2019, yet authentic, culturally-rooted, structured content remains scarce online.",
+          "comm.c3.title": "Afro-descendants in Europe",
+          "comm.c3.text":
+            "Millions of Afro-Europeans and Afro-Canadians are looking for cultural reconnection. CornRoad is built for this community, wherever they are.",
+          "comm.c4.title": "Be a founding member",
+          "comm.c4.text":
+            "Early members shape the platform \u2014 founding prices, beta feature access, and a direct voice in deciding what CornRoad becomes.",
+          "cta.kicker": "Early Access \u2014 Limited Spots",
+          "cta.title": "Ready to learn braiding<br /><em>the right way?</em>",
+          "cta.sub":
+            "Join the waitlist and be among the first to access CornRoad when we launch. Founding members get exclusive early pricing.",
+          "cta.btn": "I want early access \u2192",
+          "footer.copy":
+            "\u00a9 2025 CornRoad \u2014 Afro-Educational Platform",
+          "footer.privacy": "Privacy",
+          "footer.contact": "Contact",
+        },
+        fr: {
+          "nav.cta": "Acc\u00e8s anticip\u00e9 \u2192",
+          "hero.kicker":
+            "Acc\u00e8s b\u00eata \u00b7 Liste d\u2019attente ouverte",
+          "hero.h1": "Apprends \u00e0 tresser. Honore tes <em>racines.</em>",
+          "hero.sub":
+            "CornRoad est la plateforme afro-\u00e9ducative pour les Africains et Afro-descendants qui souhaitent apprendre le tressage et le styling \u2014 du premier cornrow \u00e0 la ma\u00eetrise professionnelle.",
+          "form.name": "Ton nom complet *",
+          "form.phone": "Ton num\u00e9ro de t\u00e9l\u00e9phone *",
+          "form.email": "Email (optionnel)",
+          "form.btn": "Rejoindre la liste",
+          "form.note":
+            "Gratuit \u00b7 Sans spam \u00b7 D\u00e9sabonnement \u00e0 tout moment",
+          "form.sending": "Envoi\u2026",
+          "form.success":
+            "Tu es sur la liste\u00a0! On te contacte d\u00e8s le lancement.",
+          "form.error": "Une erreur est survenue. Merci de r\u00e9essayer.",
+          "form.required":
+            "Le nom et le num\u00e9ro de t\u00e9l\u00e9phone sont requis.",
+          "meta.techniques": "Techniques de tressage",
+          "meta.rooted": "Contenu ancr\u00e9 dans la culture africaine",
+          "meta.beta": "Lancement b\u00eata",
+          "meta.freeVal": "Gratuit",
+          "meta.free": "Pour rejoindre la liste",
+          "prob.kicker": "Le d\u00e9fi",
+          "prob.title":
+            "Un savoir ancestral,<br /><em>difficile d\u2019acc\u00e8s.</em>",
+          "prob.sub":
+            "Le tressage est une tradition vivante \u2014 mais pour la diaspora, acc\u00e9der \u00e0 un apprentissage authentique et structur\u00e9 a toujours \u00e9t\u00e9 un d\u00e9fi.",
+          "prob.c1.title": "Un savoir transmis oralement",
+          "prob.c1.text":
+            "Les techniques de tressage traditionnelles se transmettent de main en main depuis des g\u00e9n\u00e9rations, sans curriculum \u00e9crit ni parcours structur\u00e9.",
+          "prob.c2.title": "Contenus dispers\u00e9s en ligne",
+          "prob.c2.text":
+            "Des heures de vid\u00e9os YouTube, sans progression, sans contexte, sans h\u00e9ritage. Les contenus viennent rarement d\u2019insiders de la communaut\u00e9.",
+          "prob.c3.title": "Pas de parcours professionnel",
+          "prob.c3.text":
+            "Le tressage est un m\u00e9tier et un art, mais peu de voies structur\u00e9es existent pour celles qui veulent en faire une profession durable.",
+          "prob.c4.title": "Diaspora coup\u00e9e de ses racines",
+          "prob.c4.text":
+            "Beaucoup d\u2019Afro-descendants n\u00e9s \u00e0 l\u2019\u00e9tranger ont grandi loin des a\u00een\u00e9es qui d\u00e9tenaient ce savoir. CornRoad relie ce qui a \u00e9t\u00e9 s\u00e9par\u00e9.",
+          "sol.kicker": "La solution",
+          "sol.title":
+            "Ton parcours de tressage,<br /><em>enfin structur\u00e9.</em>",
+          "sol.p1":
+            "CornRoad te donne un chemin structur\u00e9, \u00e9tape par \u00e9tape, du grand d\u00e9butant au tresseur confiant \u2014 ancr\u00e9 dans les traditions capillaires africaines et guid\u00e9 par des experts qui te ressemblent.",
+          "sol.p2":
+            "Apprends \u00e0 ton rythme, suis ta progression et connecte-toi \u00e0 une communaut\u00e9 mondiale d\u2019apprenants et de tresseurs professionnels.",
+          "sol.check1": "Tutoriels vid\u00e9o pas \u00e0 pas par des experts",
+          "sol.check2": "Curriculum progressif du grand d\u00e9butant au pro",
+          "sol.check3": "Ancr\u00e9 dans les traditions capillaires africaines",
+          "sol.check4":
+            "Communaut\u00e9 d\u2019apprenants, instructeurs et mentors",
+          "sol.check5":
+            "Suis ta progression et gagne des certificats partageables",
+          "mock.title": "CornRoad \u2014 Ma Progression",
+          "mock.c1": "Bases & Cornrows",
+          "mock.c2": "Ma\u00eetrise des Box Braids",
+          "mock.c3": "Tresses S\u00e9n\u00e9galaises",
+          "mock.c4": "Parcours Locks",
+          "mock.done": "Termin\u00e9",
+          "mock.locked": "Verrouill\u00e9",
+          "tracks.kicker": "Ce qui est inclus",
+          "tracks.title":
+            "6 parcours pour chaque niveau<br /><em>de ton chemin.</em>",
+          "tracks.sub":
+            "Chaque parcours est con\u00e7u pour te rejoindre l\u00e0 o\u00f9 tu en es et t\u2019emmener plus loin que tu ne l\u2019imagines.",
+          "tracks.t1.tag": "Commencer ici \u00b7 Gratuit",
+          "tracks.t1.title": "Les Bases",
+          "tracks.t1.text":
+            "Apprends les types de cheveux, les outils essentiels et les techniques fondamentales \u2014 cornrows basiques, sections et contr\u00f4le de la tension.",
+          "tracks.t2.tag": "Le plus populaire",
+          "tracks.t2.title": "Ma\u00eetrise du Tressage",
+          "tracks.t2.text":
+            "Box braids, knotless braids, goddess braids, styles jumbo \u2014 techniques avanc\u00e9es, motifs et finitions qui font tourner les t\u00eates.",
+          "tracks.t3.tag": "Parcours engagement",
+          "tracks.t3.title": "Parcours Locks",
+          "tracks.t3.text":
+            "Des locks traditionnelles aux sisterlocs \u2014 le cycle complet, l\u2019entretien, les techniques de retwist et le styling d\u2019un set mature.",
+          "tracks.t4.tag": "Styles protecteurs",
+          "tracks.t4.title": "Styling Naturel",
+          "tracks.t4.text":
+            "Bantu knots, perm rods, mise en forme afro, tresses s\u00e9n\u00e9galaises \u2014 des styles qui c\u00e9l\u00e8brent ta texture naturelle et prot\u00e8gent ta pousse.",
+          "tracks.t5.tag": "Racines culturelles",
+          "tracks.t5.title": "H\u00e9ritage & Culture",
+          "tracks.t5.text":
+            "L\u2019histoire derri\u00e8re la tresse. Les motifs tribaux africains, les adaptations de la diaspora, la signification sociale et spirituelle tiss\u00e9e dans chaque style.",
+          "tracks.t6.tag": "Parcours pro \u00b7 Carri\u00e8re",
+          "tracks.t6.title": "Parcours Professionnel",
+          "tracks.t6.text":
+            "Construis ta client\u00e8le, am\u00e9nage ton espace, fixe tes tarifs, cr\u00e9e ton portfolio et d\u00e9veloppe une activit\u00e9 de tressage durable.",
+          "comm.kicker": "Pourquoi maintenant",
+          "comm.title": "La renaissance du tressage<br /><em>est l\u00e0.</em>",
+          "comm.sub":
+            "Le monde prend conscience de la beaut\u00e9, de la puissance et de la profondeur de la culture capillaire afro. CornRoad existe pour que les communaut\u00e9s s\u2019approprient ce moment.",
+          "comm.c1.title": "March\u00e9 du soin capillaire naturel",
+          "comm.c1.text":
+            "Le march\u00e9 am\u00e9ricain du soin capillaire naturel est en forte croissance, port\u00e9 par les communaut\u00e9s afro-descendantes qui r\u00e9clament leur identit\u00e9.",
+          "comm.c2.title": "Croissance des recherches en 5 ans",
+          "comm.c2.text":
+            "Les recherches de tutoriels de tressage ont tripl\u00e9 depuis 2019, mais un contenu authentique, ancr\u00e9 culturellement et structur\u00e9 reste rare en ligne.",
+          "comm.c3.title": "Afro-descendants en Europe",
+          "comm.c3.text":
+            "Des millions d\u2019Afro-Europ\u00e9ens et d\u2019Afro-Canadiens cherchent \u00e0 se reconnecter \u00e0 leurs racines. CornRoad est fait pour cette communaut\u00e9, o\u00f9 qu\u2019elle soit.",
+          "comm.c4.title": "Sois membre fondateur",
+          "comm.c4.text":
+            "Les premiers membres fa\u00e7onnent la plateforme \u2014 prix fondateurs, acc\u00e8s aux fonctions b\u00eata et une voix directe pour d\u00e9cider de ce que devient CornRoad.",
+          "cta.kicker": "Acc\u00e8s anticip\u00e9 \u2014 Places limit\u00e9es",
+          "cta.title":
+            "Pr\u00eat\u00b7e \u00e0 apprendre le tressage<br /><em>comme il se doit\u00a0?</em>",
+          "cta.sub":
+            "Rejoins la liste d\u2019attente et sois parmi les premiers \u00e0 acc\u00e9der \u00e0 CornRoad au lancement. Les membres fondateurs b\u00e9n\u00e9ficient de tarifs exclusifs.",
+          "cta.btn": "Je veux l\u2019acc\u00e8s anticip\u00e9 \u2192",
+          "footer.copy":
+            "\u00a9 2025 CornRoad \u2014 Plateforme Afro-\u00c9ducative",
+          "footer.privacy": "Confidentialit\u00e9",
+          "footer.contact": "Contact",
+        },
+      };
+
+      let lang = "en";
+
+      function detectLang() {
+        const saved = localStorage.getItem("cr_lang");
+        if (saved && T[saved]) return saved;
+        const nav = (navigator.language || navigator.userLanguage || "en")
+          .slice(0, 2)
+          .toLowerCase();
+        return T[nav] ? nav : "en";
+      }
+
+      function applyLang(l) {
+        lang = l;
+        document.documentElement.lang = l;
+        const t = T[l];
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const v = t[el.dataset.i18n];
+          if (v !== undefined) el.textContent = v;
+        });
+        document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+          const v = t[el.dataset.i18nHtml];
+          if (v !== undefined) el.innerHTML = v;
+        });
+        document.querySelectorAll("[data-i18n-ph]").forEach((el) => {
+          const v = t[el.dataset.i18nPh];
+          if (v !== undefined) el.placeholder = v;
+        });
+        document.getElementById("lang-toggle").textContent =
+          l === "en" ? "FR" : "EN";
+        localStorage.setItem("cr_lang", l);
+      }
+
+      function toggleLang() {
+        applyLang(lang === "en" ? "fr" : "en");
+      }
+
+      // ── Form submission ────────────────────────────────────────────────────────
+      async function handleForm(form, msgEl) {
+        const t = T[lang];
+        const name = form.querySelector('[name="name"]').value.trim();
+        const phone = form.querySelector('[name="phone"]').value.trim();
+        const email = form.querySelector('[name="email"]').value.trim();
+        const btn = form.querySelector('button[type="submit"]');
+
+        if (!name || !phone) {
+          msgEl.className = "form-message error";
+          msgEl.textContent = t["form.required"];
+          return;
+        }
+
+        const origText = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = t["form.sending"];
+        msgEl.className = "form-message";
+        msgEl.textContent = "";
+
+        try {
+          const res = await fetch("/api/signup", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, phone, email: email || undefined }),
+          });
+          const data = await res.json();
+          if (res.ok && data.success) {
+            msgEl.className = "form-message success";
+            msgEl.textContent = t["form.success"];
+            form.reset();
+          } else {
+            throw new Error(data.error || "Unknown error");
+          }
+        } catch (_) {
+          msgEl.className = "form-message error";
+          msgEl.textContent = t["form.error"];
+        } finally {
+          btn.disabled = false;
+          btn.textContent = origText;
+        }
+      }
+
+      document.getElementById("hero-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        handleForm(e.target, document.getElementById("hero-msg"));
+      });
+      document.getElementById("cta-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        handleForm(e.target, document.getElementById("cta-msg"));
+      });
+
+      // ── Init ───────────────────────────────────────────────────────────────────
+      applyLang(detectLang());
+    </script>
+  </body>
+</html>

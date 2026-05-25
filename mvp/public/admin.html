@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CornRoad — Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #0d0d0b;
+        --ink-soft: #3d3d38;
+        --ink-muted: #7a7a72;
+        --paper: #f2eee8;
+        --paper-warm: #e8e2d6;
+        --paper-white: #fdfaf6;
+        --accent: #c4622d;
+        --accent-soft: #f5e8de;
+        --accent2: #2e6b3e;
+        --accent2-soft: #deeddf;
+        --border: rgba(13, 13, 11, 0.12);
+        --border-strong: rgba(13, 13, 11, 0.22);
+        --serif: "DM Serif Display", Georgia, serif;
+        --sans: "DM Sans", system-ui, sans-serif;
+        --mono: "JetBrains Mono", monospace;
+        --max: 1060px;
+        --r: 10px;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: var(--sans);
+        background: var(--paper);
+        color: var(--ink);
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      /* LOGIN */
+      #login-screen {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--paper);
+      }
+      .login-card {
+        background: var(--paper-white);
+        border: 1px solid var(--border-strong);
+        border-radius: var(--r);
+        padding: 40px;
+        width: 100%;
+        max-width: 380px;
+      }
+      .login-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 6px;
+      }
+      .login-logo img {
+        height: 36px;
+        width: auto;
+      }
+      .login-sub {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+        margin-bottom: 32px;
+      }
+      .login-card label {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+        display: block;
+        margin-bottom: 6px;
+      }
+      .login-card input[type="password"] {
+        width: 100%;
+        border: 1px solid var(--border-strong);
+        background: var(--paper);
+        border-radius: 4px;
+        padding: 11px 16px;
+        font-family: var(--sans);
+        font-size: 14px;
+        color: var(--ink);
+        outline: none;
+        transition: border-color 0.15s;
+        margin-bottom: 14px;
+      }
+      .login-card input[type="password"]:focus {
+        border-color: var(--accent);
+      }
+      .btn-login {
+        width: 100%;
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--paper);
+        background: var(--ink);
+        border: none;
+        border-radius: 4px;
+        padding: 12px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .btn-login:hover {
+        background: var(--accent);
+      }
+      #login-error {
+        margin-top: 12px;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--accent);
+        display: none;
+      }
+
+      /* DASHBOARD */
+      #dashboard {
+        display: none;
+        min-height: 100vh;
+      }
+
+      /* TOP BAR */
+      .topbar {
+        background: rgba(242, 238, 232, 0.96);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border-strong);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .topbar-inner {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 40px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .topbar-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .topbar-logo img {
+        height: 32px;
+        width: auto;
+      }
+      .topbar-badge {
+        font-family: var(--mono);
+        font-size: 9px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        background: var(--accent-soft);
+        color: var(--accent);
+        padding: 3px 8px;
+        border-radius: 3px;
+      }
+      .btn-logout {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+        background: transparent;
+        border: 1px solid var(--border-strong);
+        border-radius: 4px;
+        padding: 6px 14px;
+        cursor: pointer;
+        transition:
+          border-color 0.15s,
+          color 0.15s;
+      }
+      .btn-logout:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      /* MAIN */
+      .main-content {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 48px 40px;
+      }
+
+      /* STATS */
+      .stats-bar {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+      }
+      .stat-box {
+        background: var(--paper-white);
+        border: 1px solid var(--border-strong);
+        border-radius: var(--r);
+        padding: 20px 24px;
+        flex: 1;
+        min-width: 140px;
+      }
+      .stat-box-val {
+        font-family: var(--serif);
+        font-size: 32px;
+        color: var(--ink);
+        line-height: 1;
+      }
+      .stat-box-val em {
+        font-style: normal;
+        color: var(--accent);
+      }
+      .stat-box-lbl {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+        margin-top: 6px;
+      }
+
+      /* TABLE */
+      .table-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+      }
+      .table-title {
+        font-family: var(--serif);
+        font-size: 24px;
+        color: var(--ink);
+      }
+      .btn-csv {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+        background: transparent;
+        border: 1px solid var(--border-strong);
+        border-radius: 4px;
+        padding: 7px 14px;
+        cursor: pointer;
+        transition:
+          border-color 0.15s,
+          color 0.15s;
+      }
+      .btn-csv:hover {
+        border-color: var(--accent2);
+        color: var(--accent2);
+      }
+
+      .table-wrap {
+        background: var(--paper-white);
+        border: 1px solid var(--border-strong);
+        border-radius: var(--r);
+        overflow: hidden;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      thead {
+        background: var(--paper-warm);
+      }
+      thead th {
+        padding: 12px 20px;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+        text-align: left;
+        font-weight: 500;
+      }
+      tbody tr {
+        border-bottom: 1px solid var(--border);
+        transition: background 0.1s;
+      }
+      tbody tr:last-child {
+        border-bottom: none;
+      }
+      tbody tr:hover {
+        background: var(--paper-warm);
+      }
+      tbody td {
+        padding: 14px 20px;
+        font-size: 14px;
+        color: var(--ink-soft);
+        vertical-align: middle;
+      }
+      tbody td:first-child {
+        font-weight: 500;
+        color: var(--ink);
+      }
+      .td-id {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-muted);
+      }
+      .td-date {
+        font-family: var(--mono);
+        font-size: 11px;
+      }
+      .td-email-none {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-muted);
+        font-style: italic;
+      }
+
+      .btn-del {
+        font-family: var(--mono);
+        font-size: 9px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+        background: transparent;
+        border: 1px solid var(--border);
+        border-radius: 3px;
+        padding: 4px 10px;
+        cursor: pointer;
+        transition:
+          border-color 0.15s,
+          color 0.15s;
+      }
+      .btn-del:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .empty-state {
+        padding: 48px;
+        text-align: center;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--ink-muted);
+        letter-spacing: 0.06em;
+      }
+
+      /* TOAST */
+      .toast {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.04em;
+        background: var(--ink);
+        color: var(--paper);
+        padding: 10px 18px;
+        border-radius: 6px;
+        opacity: 0;
+        transition: opacity 0.2s;
+        pointer-events: none;
+        z-index: 999;
+      }
+      .toast.show {
+        opacity: 1;
+      }
+
+      @media (max-width: 640px) {
+        .main-content,
+        .topbar-inner {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        .table-wrap {
+          overflow-x: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- LOGIN -->
+    <div id="login-screen">
+      <div class="login-card">
+        <div class="login-logo">
+          <img src="logo.png" alt="CornRoad" />
+        </div>
+        <p class="login-sub">Admin Panel</p>
+        <label for="token-input">Admin Token</label>
+        <input
+          type="password"
+          id="token-input"
+          placeholder="Enter your admin token"
+          autocomplete="current-password"
+        />
+        <button class="btn-login" id="login-btn">Sign in</button>
+        <p id="login-error">Invalid token. Please try again.</p>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="dashboard">
+      <div class="topbar">
+        <div class="topbar-inner">
+          <div class="topbar-logo">
+            <img src="logo.png" alt="CornRoad" />
+            <span class="topbar-badge">Admin</span>
+          </div>
+          <button class="btn-logout" id="logout-btn">Sign out</button>
+        </div>
+      </div>
+
+      <div class="main-content">
+        <div class="stats-bar">
+          <div class="stat-box">
+            <div class="stat-box-val"><em id="stat-total">—</em></div>
+            <div class="stat-box-lbl">Total signups</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-val"><em id="stat-email">—</em></div>
+            <div class="stat-box-lbl">With email</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-val"><em id="stat-today">—</em></div>
+            <div class="stat-box-lbl">Today</div>
+          </div>
+        </div>
+
+        <div class="table-header">
+          <h2 class="table-title">Waitlist</h2>
+          <button class="btn-csv" id="export-csv">Export CSV</button>
+        </div>
+
+        <div class="table-wrap">
+          <table id="signups-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Date</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="table-body">
+              <tr>
+                <td colspan="6" class="empty-state">Loading&hellip;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+      const $ = (id) => document.getElementById(id);
+      let authToken = sessionStorage.getItem("cr_admin_token") || "";
+      let allRows = [];
+
+      function showToast(msg, duration = 2800) {
+        const t = $("toast");
+        t.textContent = msg;
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), duration);
+      }
+
+      function formatDate(iso) {
+        const d = new Date(iso);
+        return (
+          d.toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          }) +
+          " " +
+          d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })
+        );
+      }
+
+      function escHtml(s) {
+        return String(s ?? "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      function renderTable(rows) {
+        const today = new Date().toDateString();
+        let todayCount = 0;
+        let emailCount = 0;
+
+        if (!rows.length) {
+          $("table-body").innerHTML =
+            '<tr><td colspan="6" class="empty-state">No signups yet.</td></tr>';
+        } else {
+          $("table-body").innerHTML = rows
+            .map((r) => {
+              if (new Date(r.created_at).toDateString() === today) todayCount++;
+              if (r.email) emailCount++;
+              const emailCell = r.email
+                ? `<td>${escHtml(r.email)}</td>`
+                : `<td><span class="td-email-none">—</span></td>`;
+              return `<tr>
+          <td class="td-id">${r.id}</td>
+          <td>${escHtml(r.name)}</td>
+          <td>${escHtml(r.phone)}</td>
+          ${emailCell}
+          <td class="td-date">${formatDate(r.created_at)}</td>
+          <td><button class="btn-del" onclick="deleteRow(${r.id})">Delete</button></td>
+        </tr>`;
+            })
+            .join("");
+        }
+
+        $("stat-total").textContent = rows.length;
+        $("stat-email").textContent = emailCount;
+        $("stat-today").textContent = todayCount;
+      }
+
+      async function loadData() {
+        try {
+          const res = await fetch("/api/admin/signups", {
+            headers: { Authorization: "Bearer " + authToken },
+          });
+          if (res.status === 401) {
+            doLogout();
+            return;
+          }
+          const data = await res.json();
+          allRows = data.signups || [];
+          renderTable(allRows);
+        } catch (_) {
+          $("table-body").innerHTML =
+            '<tr><td colspan="6" class="empty-state">Failed to load data.</td></tr>';
+        }
+      }
+
+      async function deleteRow(id) {
+        if (!confirm("Delete this signup?")) return;
+        try {
+          const res = await fetch("/api/admin/signups/" + id, {
+            method: "DELETE",
+            headers: { Authorization: "Bearer " + authToken },
+          });
+          if (res.ok) {
+            allRows = allRows.filter((r) => r.id !== id);
+            renderTable(allRows);
+            showToast("Signup deleted.");
+          }
+        } catch (_) {
+          showToast("Delete failed.");
+        }
+      }
+
+      function doLogout() {
+        authToken = "";
+        sessionStorage.removeItem("cr_admin_token");
+        $("dashboard").style.display = "none";
+        $("login-screen").style.display = "flex";
+      }
+
+      $("login-btn").addEventListener("click", async () => {
+        const token = $("token-input").value.trim();
+        if (!token) return;
+        $("login-btn").disabled = true;
+        $("login-btn").textContent = "Checking…";
+        $("login-error").style.display = "none";
+        try {
+          const res = await fetch("/api/admin/signups", {
+            headers: { Authorization: "Bearer " + token },
+          });
+          if (res.ok) {
+            authToken = token;
+            sessionStorage.setItem("cr_admin_token", token);
+            $("login-screen").style.display = "none";
+            $("dashboard").style.display = "block";
+            const data = await res.json();
+            allRows = data.signups || [];
+            renderTable(allRows);
+          } else {
+            $("login-error").style.display = "block";
+          }
+        } catch (_) {
+          $("login-error").style.display = "block";
+        }
+        $("login-btn").disabled = false;
+        $("login-btn").textContent = "Sign in";
+      });
+
+      $("token-input").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") $("login-btn").click();
+      });
+      $("logout-btn").addEventListener("click", doLogout);
+
+      $("export-csv").addEventListener("click", () => {
+        if (!allRows.length) {
+          showToast("No data to export.");
+          return;
+        }
+        const header = ["id", "name", "phone", "email", "source", "created_at"];
+        const rows = allRows.map((r) =>
+          header.map((k) => JSON.stringify(r[k] ?? "")).join(","),
+        );
+        const blob = new Blob([header.join(",") + "\n" + rows.join("\n")], {
+          type: "text/csv",
+        });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download =
+          "cornroad-signups-" + new Date().toISOString().slice(0, 10) + ".csv";
+        a.click();
+        showToast("CSV downloaded.");
+      });
+
+      // Auto-login if token in sessionStorage
+      (function () {
+        if (authToken) {
+          $("login-screen").style.display = "none";
+          $("dashboard").style.display = "block";
+          loadData();
+        }
+      })();
+    </script>
+  </body>
+</html>
